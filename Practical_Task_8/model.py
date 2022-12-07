@@ -2,6 +2,14 @@ import csv
 
 
 def update_record(db: dict, rec_id: int, data1: list, mapping: dict):
+    """
+    Создание и обновление словарь словарей
+    :param db: база данных
+    :param rec_id: increment
+    :param data: данные ученика
+    :param mapping: отображение данных
+    :return: словарь словарей
+    """
     db[rec_id] = {name: value for name, value in zip(mapping.keys(), data1)}
     return db
 
@@ -64,12 +72,19 @@ def export_csv(db: dict, filename: str, delimiter='#'):
 
 
 def import_csv_id(db: dict, file_name: str, mapping, delimiter="#"):
+    """
+    Импорт данных с id
+    :param db: база данных
+    :param file_name: имя файла
+    :param delimiter: делитель
+    :return:
+    """
     with open(file_name, mode='r', encoding='utf-8') as file:
         rec = []
         for data in file:
             id_1, lastname, firstname, group = data.strip().split(delimiter)
             id = int(id_1)
-            rec.append(surname), rec.append(name), rec.append(tel)
+            rec.append(lastname), rec.append(firstname), rec.append(group)
             update_record(db, id, rec, mapping)
             rec.clear()
     return db
