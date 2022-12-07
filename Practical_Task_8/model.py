@@ -66,8 +66,8 @@ def export_csv(db: dict, filename: str, delimiter='#'):
         file_writer = csv.writer(file, delimiter="#")
         for key, value in db.items():
             rec = []
-            for v in value.values():
-                rec.append(v)
+            for item in value.values():
+                rec.append(item)
             file_writer.writerow(rec)
 
 
